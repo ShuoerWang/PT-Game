@@ -35,13 +35,11 @@ public class Machine : MonoBehaviour
         {
             audioSourcePowerOn.Play();
             powerButtonImage.sprite = powerButtonOnSprite;
-            toolSelect.HighlightCurrentTool();
         }
         else
         {
             audioSourcePowerOff.Play();
             powerButtonImage.sprite = powerButtonOffSprite;
-            toolSelect.DimCurrentTool();
             wand.TurnOffWand();
         }
     }

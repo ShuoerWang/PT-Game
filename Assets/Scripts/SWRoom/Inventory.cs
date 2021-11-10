@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("marker", 0);
         PlayerPrefs.SetInt("gel", 0);
         PlayerPrefs.SetInt("wand", 0);
+        PlayerPrefs.SetString("currentTool", "");
     }
 
 

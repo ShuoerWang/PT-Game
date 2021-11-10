@@ -56,6 +56,10 @@ public class Wand : MonoBehaviour
     public void TurnOffWand()
     {
         wandOn = false;
+        if (toolSelect.IsWand())
+        {
+            toolSelect.DimCurrentTool();
+        }
     }
 
     public void ToggleWand()

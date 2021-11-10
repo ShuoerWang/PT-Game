@@ -15,4 +15,9 @@ public class CommonDialogueNode : DialogueNode
     {
         visitor.Visit(this);
     }
+
+    public void changeNext(DialogueNode node)
+    {
+        nextNode = node;
+    }
 }

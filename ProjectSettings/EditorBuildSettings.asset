@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Quiz.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/ShockwaveMinigame.unity
+    path: Assets/Scenes/ShockwaveLegacy.unity
     guid: d3852929e1b07b149ad1ae9948bcc20b
   - enabled: 1
     path: Assets/Scenes/End.unity

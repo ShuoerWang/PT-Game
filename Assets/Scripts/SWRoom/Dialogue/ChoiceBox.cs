@@ -9,6 +9,7 @@ public class ChoiceBox : MonoBehaviour
     public DialogueChannel dialogueChannel;
 
     private DialogueNode nextNode;
+    public DialogueNode currNode;
 
     public DialogueChoice Choice
     {
@@ -32,7 +33,8 @@ public class ChoiceBox : MonoBehaviour
             dialogueChannel.RaiseDialogueNodeStart(nextNode);
         } else
         {
-            dialogueChannel.RaiseDialogueEnd();
+            dialogueChannel.RaiseDialogueNodeEnd();
+            dialogueChannel.RaiseDialogueEnd(currNode);
         }
         
     }

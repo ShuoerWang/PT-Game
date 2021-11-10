@@ -3,12 +3,13 @@
 [CreateAssetMenu(menuName = "Scriptable Objects/Dialogue/Dialogue Channel")]
 public class DialogueChannel : ScriptableObject
 {
+    public delegate void DialogueCallback(DialogueNode node);
     public delegate void DialogueEndCallback();
-    public DialogueEndCallback OnDialogueEnd;
+
+    public DialogueCallback OnDialogueEnd;
     public DialogueEndCallback OnDialogueNodeEnd;
 
-    public delegate void DialogueStartCallback(DialogueNode node);
-    public DialogueStartCallback OnDialogueStart;
+    public DialogueCallback OnDialogueStart;
 
 
     public void RaiseDialogueNodeStart(DialogueNode node)
@@ -16,9 +17,9 @@ public class DialogueChannel : ScriptableObject
         OnDialogueStart?.Invoke(node);
     }
 
-    public void RaiseDialogueEnd()
+    public void RaiseDialogueEnd(DialogueNode node)
     {
-        OnDialogueEnd?.Invoke();
+        OnDialogueEnd?.Invoke(node);
     }
 
     public void RaiseDialogueNodeEnd()

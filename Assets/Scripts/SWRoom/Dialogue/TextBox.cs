@@ -5,9 +5,11 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
 {
     private bool waitingForClick;
     private DialogueNode nextNode;
+    private DialogueNode currentNode;
 
     public DialogueChannel dialogueChannel;
     public TextMeshProUGUI dialoguetext;
+    public TextMeshProUGUI chartext;
 
     public ChoiceBox choiceBox;
     public RectTransform narrationBox;
@@ -16,6 +18,7 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     public void Visit(CommonDialogueNode node)
     {
         narrationBox.gameObject.SetActive(true);
+        currentNode = node;
         if (node.narration.Equals(""))
         {
             narrationBox.gameObject.SetActive(false);
@@ -30,6 +33,7 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     public void Visit(ChoiceDialogueNode node)
     {
         choicePanel.gameObject.SetActive(true);
+        currentNode = node;
         if (node.narration.Equals(""))
         {
             narrationBox.gameObject.SetActive(false);
@@ -42,6 +46,7 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
         {
             ChoiceBox newChoice = Instantiate(choiceBox, choicePanel);
             newChoice.Choice = choice;
+            newChoice.currNode = node;
         }
     }
 
@@ -54,7 +59,6 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     private void OnDestroy()
     {
         dialogueChannel.OnDialogueNodeEnd -= OnDialogueNodeEnd;
-        dialogueChannel.OnDialogueEnd -= OnDialogueNodeEnd;
         dialogueChannel.OnDialogueStart -= OnDialogueNodeStart;
     }
 
@@ -69,7 +73,8 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
                 dialogueChannel.RaiseDialogueNodeStart(nextNode);
             } else
             {
-                dialogueChannel.RaiseDialogueEnd();
+                dialogueChannel.RaiseDialogueNodeEnd();
+                dialogueChannel.RaiseDialogueEnd(currentNode);
             }
             
         }
@@ -78,7 +83,6 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     void Awake()
     {
         dialogueChannel.OnDialogueStart += OnDialogueNodeStart;
-        dialogueChannel.OnDialogueEnd += OnDialogueNodeEnd;
         dialogueChannel.OnDialogueNodeEnd += OnDialogueNodeEnd;
         choicePanel.gameObject.SetActive(false);
         narrationBox.gameObject.SetActive(false);
@@ -88,6 +92,10 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     {
         gameObject.SetActive(true);
         dialoguetext.text = dialogueNode.narration;
+        if (!dialogueNode.speakerName.Equals(""))
+        {
+            chartext.text = dialogueNode.speakerName + " :";
+        }
         //TODO: speaker?
 
         dialogueNode.Accept(this);
@@ -97,6 +105,7 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     {
         waitingForClick = false;
         dialoguetext.text = "";
+        chartext.text = "";
         gameObject.SetActive(false);
         choicePanel.gameObject.SetActive(false);
         narrationBox.gameObject.SetActive(false);
@@ -105,4 +114,5 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
             Destroy(child.gameObject);
         }
     }
+
 }
