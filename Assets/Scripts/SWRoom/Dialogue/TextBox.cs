@@ -14,6 +14,9 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
     public ChoiceBox choiceBox;
     public RectTransform narrationBox;
     public RectTransform choicePanel;
+    public RectTransform inputField;
+
+    public InputDialogueBox inputDialogueBox;
 
     public void Visit(CommonDialogueNode node)
     {
@@ -48,6 +51,14 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
             newChoice.Choice = choice;
             newChoice.currNode = node;
         }
+    }
+
+    public void Visit(InputDialogueNode node)
+    {
+        inputField.gameObject.SetActive(true);
+        narrationBox.gameObject.SetActive(true);
+        currentNode = node;
+        inputDialogueBox.setInputDialogueNode(node);
     }
 
     // Use this for initialization
@@ -86,15 +97,17 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
         dialogueChannel.OnDialogueNodeEnd += OnDialogueNodeEnd;
         choicePanel.gameObject.SetActive(false);
         narrationBox.gameObject.SetActive(false);
+        inputField.gameObject.SetActive(false);
     }
 
     private void OnDialogueNodeStart(DialogueNode dialogueNode)
     {
         gameObject.SetActive(true);
         dialoguetext.text = dialogueNode.narration;
-        if (!dialogueNode.speakerName.Equals(""))
+        if (dialogueNode.speakerName.Contains("ucy")||
+            dialogueNode.speakerName.Contains("patient"))
         {
-            chartext.text = dialogueNode.speakerName + " :";
+            chartext.text = PlayerPrefs.GetString("patientName") + ":";
         }
         //TODO: speaker?
 
@@ -109,6 +122,7 @@ public class TextBox : MonoBehaviour, DialogueNodeVisitor
         gameObject.SetActive(false);
         choicePanel.gameObject.SetActive(false);
         narrationBox.gameObject.SetActive(false);
+        inputField.gameObject.SetActive(false);
         foreach (Transform child in choicePanel)
         {
             Destroy(child.gameObject);

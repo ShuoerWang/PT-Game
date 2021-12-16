@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Manage the navigation through Arrows
 public class SWRoomManager : MonoBehaviour
 {
     public GameObject entry;
+    public GameObject entry2;
     public GameObject foot;
     public GameObject back;
     public GameObject machine;
     public GameObject patient;
+    public GameObject elbow;
 
+    private GameObject currMachinePowerPlug;
     public GameObject machinePowerPlug;
     public GameObject machinePowerPlugOn;
+
+    private GameObject currMachineWandPlug;
     public GameObject machineWandPlug;
     public GameObject machineWandPlugOn;
     public GameObject shelf;
@@ -36,21 +42,31 @@ public class SWRoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetString("currentScene").Equals("back"))
+        if (PlayerPrefs.GetInt("patient") == 1)
         {
-            current = back;
+            Camera.main.transform.position =
+                            new Vector3(entry2.transform.position.x,
+                            entry2.transform.position.y, Camera.main.transform.position.z);
+            current = entry2;
         } else
         {
             current = entry;
         }
 
+
         if (PlayerPrefs.GetInt("powerPlugged") == 1)
         {
-            machinePowerPlug = machinePowerPlugOn;
+            currMachinePowerPlug = machinePowerPlugOn;
+        } else
+        {
+            currMachinePowerPlug = machinePowerPlug;
         }
         if (PlayerPrefs.GetInt("wandPlugged") == 1)
         {
-            machineWandPlug = machineWandPlugOn;
+            currMachineWandPlug = machineWandPlugOn;
+        } else
+        {
+            currMachineWandPlug = machineWandPlug;
         }
         if (PlayerPrefs.GetInt("machineOn") == 1)
         {
@@ -110,9 +126,9 @@ public class SWRoomManager : MonoBehaviour
         else if (current == machine)
         {
             Camera.main.transform.position =
-                            new Vector3(machineWandPlug.transform.position.x,
-                            machineWandPlug.transform.position.y, Camera.main.transform.position.z);
-            current = machineWandPlug;
+                            new Vector3(currMachineWandPlug.transform.position.x,
+                            currMachineWandPlug.transform.position.y, Camera.main.transform.position.z);
+            current = currMachineWandPlug;
             updateCanvas();
         }
         else if (current == shelf)
@@ -123,11 +139,20 @@ public class SWRoomManager : MonoBehaviour
             current = machine;
             updateCanvas();
         }
+        else if (current == elbow)
+        {
+            Camera.main.transform.position =
+                            new Vector3(entry2.transform.position.x,
+                            entry2.transform.position.y, Camera.main.transform.position.z);
+            current = entry2;
+            updateCanvas();
+        }
+
     }
 
     public void MoveBack()
     {
-        if (current == entry || current == machineWandPlug)
+        if (current == currMachineWandPlug)
         {
             Camera.main.transform.position =
                 new Vector3(machine.transform.position.x,
@@ -135,7 +160,7 @@ public class SWRoomManager : MonoBehaviour
             current = machine;
         }
         else if (current == back
-            || current == foot || current == patient || current == shelf)
+            || current == foot || current == patient)
         {
             Camera.main.transform.position =
                 new Vector3(entry.transform.position.x,
@@ -148,6 +173,13 @@ public class SWRoomManager : MonoBehaviour
                 new Vector3(shelf.transform.position.x,
                 shelf.transform.position.y, Camera.main.transform.position.z);
             current = shelf;
+        }
+        else if (current == entry2)
+        {
+            Camera.main.transform.position =
+                new Vector3(elbow.transform.position.x,
+                elbow.transform.position.y, Camera.main.transform.position.z);
+            current = elbow;
         }
         updateCanvas();
     }
@@ -168,12 +200,15 @@ public class SWRoomManager : MonoBehaviour
                 back.transform.position.y, Camera.main.transform.position.z);
             current = back;
         }
-        else if (current == machinePowerPlug)
+        else if (current == currMachinePowerPlug)
         {
             Camera.main.transform.position =
                 new Vector3(shelf.transform.position.x,
                 shelf.transform.position.y, Camera.main.transform.position.z);
             current = shelf;
+        } else if (current == elbow || current == entry || current == entry2)
+        {
+            MoveToMachine();
         }
         updateCanvas();
     }
@@ -197,22 +232,75 @@ public class SWRoomManager : MonoBehaviour
         else if (current == shelf)
         {
             Camera.main.transform.position =
-                new Vector3(machinePowerPlug.transform.position.x,
-                machinePowerPlug.transform.position.y, Camera.main.transform.position.z);
-            current = machinePowerPlug;
+                new Vector3(currMachinePowerPlug.transform.position.x,
+                currMachinePowerPlug.transform.position.y, Camera.main.transform.position.z);
+            current = currMachinePowerPlug;
+        } else if (current == machine)
+        {
+            if (PlayerPrefs.GetInt("patient") == 1)
+            {
+                Camera.main.transform.position =
+                new Vector3(entry2.transform.position.x,
+                entry2.transform.position.y, Camera.main.transform.position.z);
+                current = entry2;
+            }
+            else
+            {
+                Camera.main.transform.position =
+                new Vector3(entry.transform.position.x,
+                entry.transform.position.y, Camera.main.transform.position.z);
+                current = entry;
+            }
         }
+        updateCanvas();
+    }
+
+    public void MoveToFoot()
+    {
+        Camera.main.transform.position =
+                new Vector3(foot.transform.position.x,
+                foot.transform.position.y, Camera.main.transform.position.z);
+        current = foot;
+        updateCanvas();
+    }
+
+    public void MoveToBack()
+    {
+        Camera.main.transform.position =
+                            new Vector3(back.transform.position.x,
+                            back.transform.position.y, Camera.main.transform.position.z);
+        current = back;
+        updateCanvas();
+    }
+
+    public void MoveToPatient()
+    {
+        Camera.main.transform.position =
+                new Vector3(patient.transform.position.x,
+                patient.transform.position.y, Camera.main.transform.position.z);
+        current = patient;
+        updateCanvas();
+    }
+
+    public void MoveToMachine()
+    {
+        Camera.main.transform.position =
+                new Vector3(machine.transform.position.x,
+                machine.transform.position.y, Camera.main.transform.position.z);
+        current = machine;
         updateCanvas();
     }
 
     // for different sub-scene in this scene, update the navigation arrow
     // add a if else branch if add a new subscene
+    // To modify the arrows show up in each scene, do it here!
     public void updateCanvas()
     {
         if (current == entry)
         {
             forwardArrow.SetActive(true);
-            backArrow.SetActive(true);
-            leftArrow.SetActive(false);
+            backArrow.SetActive(false);
+            leftArrow.SetActive(true);
             rightArrow.SetActive(false);
             dialogueButton.SetActive(false);
         }
@@ -221,7 +309,7 @@ public class SWRoomManager : MonoBehaviour
             forwardArrow.SetActive(true);
             backArrow.SetActive(true);
             leftArrow.SetActive(false);
-            rightArrow.SetActive(false);
+            rightArrow.SetActive(true);
             dialogueButton.SetActive(false);
         }
         else if (current == back)
@@ -248,7 +336,7 @@ public class SWRoomManager : MonoBehaviour
             rightArrow.SetActive(false);
             dialogueButton.SetActive(true);
         }
-        else if (current == machinePowerPlug)
+        else if (current == currMachinePowerPlug)
         {
             forwardArrow.SetActive(false);
             backArrow.SetActive(false);
@@ -256,7 +344,7 @@ public class SWRoomManager : MonoBehaviour
             rightArrow.SetActive(false);
             dialogueButton.SetActive(false);
         }
-        else if (current == machineWandPlug)
+        else if (current == currMachineWandPlug)
         {
             forwardArrow.SetActive(false);
             backArrow.SetActive(true);
@@ -267,9 +355,25 @@ public class SWRoomManager : MonoBehaviour
         else if (current == shelf)
         {
             forwardArrow.SetActive(true);
-            backArrow.SetActive(true);
+            backArrow.SetActive(false);
             leftArrow.SetActive(false);
             rightArrow.SetActive(true);
+            dialogueButton.SetActive(false);
+        }
+        else if (current == entry2)
+        {
+            forwardArrow.SetActive(false);
+            backArrow.SetActive(true);
+            leftArrow.SetActive(true);
+            rightArrow.SetActive(false);
+            dialogueButton.SetActive(true);
+        }
+        else if (current == elbow)
+        {
+            forwardArrow.SetActive(true);
+            backArrow.SetActive(false);
+            leftArrow.SetActive(true);
+            rightArrow.SetActive(false);
             dialogueButton.SetActive(false);
         }
     }
@@ -281,6 +385,14 @@ public class SWRoomManager : MonoBehaviour
 
 
     private void startDialogue(DialogueNode dialogueNode)
+    {
+        forwardArrow.SetActive(false);
+        backArrow.SetActive(false);
+        leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
+    }
+
+    public void disableArrows()
     {
         forwardArrow.SetActive(false);
         backArrow.SetActive(false);
@@ -300,21 +412,44 @@ public class SWRoomManager : MonoBehaviour
 
     public void powerPlugged()
     {
-        machinePowerPlug = machinePowerPlugOn;
-        current = machinePowerPlugOn;
+        currMachinePowerPlug = machinePowerPlugOn;
+        current = currMachinePowerPlug;
         Camera.main.transform.position =
-                new Vector3(machinePowerPlug.transform.position.x,
-                machinePowerPlug.transform.position.y, Camera.main.transform.position.z);
+                new Vector3(currMachinePowerPlug.transform.position.x,
+                currMachinePowerPlug.transform.position.y, Camera.main.transform.position.z);
         updateCanvas();
     }
 
     public void wandPlugged()
     {
-        machineWandPlug = machineWandPlugOn;
-        current = machineWandPlugOn;
+        currMachineWandPlug = machineWandPlugOn;
+        current = currMachineWandPlug;
         Camera.main.transform.position =
-                new Vector3(machineWandPlug.transform.position.x,
-                machineWandPlug.transform.position.y, Camera.main.transform.position.z);
+                new Vector3(currMachineWandPlug.transform.position.x,
+                currMachineWandPlug.transform.position.y, Camera.main.transform.position.z);
         updateCanvas();
+    }
+
+    public void ResetGame()
+    {
+        if (PlayerPrefs.GetInt("patient") == 1)
+        {
+            Camera.main.transform.position =
+                            new Vector3(entry2.transform.position.x,
+                            entry2.transform.position.y, Camera.main.transform.position.z);
+            current = entry2;
+        }
+        else
+        {
+            Camera.main.transform.position =
+                            new Vector3(entry.transform.position.x,
+                            entry.transform.position.y, Camera.main.transform.position.z);
+            current = entry;
+        }
+        changeToMOFF();
+        currMachineWandPlug = machineWandPlug;
+        currMachinePowerPlug = machinePowerPlug;
+
+
     }
 }

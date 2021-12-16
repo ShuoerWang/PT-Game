@@ -16,6 +16,6 @@ MonoBehaviour:
   speakerName: 
   Choices:
   - preview: Yes
-    choiceNode: {fileID: 0}
+    choiceNode: {fileID: 11400000, guid: f6323af424d314f5596f060e4eeb5629, type: 2}
   - preview: No
     choiceNode: {fileID: 0}

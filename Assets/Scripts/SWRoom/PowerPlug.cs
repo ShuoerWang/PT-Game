@@ -12,7 +12,7 @@ public class PowerPlug : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueChannel.OnDialogueEnd += OnDialogueEnd;
     }
 
     // Update is called once per frame

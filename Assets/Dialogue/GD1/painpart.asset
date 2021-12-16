@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: painpart
   m_EditorClassIdentifier: 
   narration: Hi, where is the pain area?
-  speakerName: Player
+  speakerName: 'Player:'
   nextNode: {fileID: 11400000, guid: 920f5d17cbae346b99ded398b427958f, type: 2}

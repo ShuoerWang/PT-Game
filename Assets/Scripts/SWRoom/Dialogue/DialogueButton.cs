@@ -10,14 +10,12 @@ public class DialogueButton : MonoBehaviour
 
     void Start()
     {
-        dialogueChannel.OnDialogueEnd += showButton;
         dialogueChannel.OnDialogueStart += hideButton;
 
     }
 
     void OnDestroy()
     {
-        dialogueChannel.OnDialogueEnd -= showButton;
         dialogueChannel.OnDialogueStart -= hideButton;
     }
 
@@ -30,11 +28,6 @@ public class DialogueButton : MonoBehaviour
     void hideButton(DialogueNode dialogueNode)
     {
         gameObject.SetActive(false);
-    }
-
-    void showButton(DialogueNode dialogueNode)
-    {
-        gameObject.SetActive(true);
     }
 
     public void trggerDialogue()

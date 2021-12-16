@@ -13,6 +13,12 @@ TagManager:
   - gelBlob
   - wand
   - machine
+  - elbow
+  - endButton
+  - powerButton
+  - powerPlug
+  - wandPlug
+  - target
   layers:
   - Default
   - TransparentFX

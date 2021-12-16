@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daae0c8f62fb484d9016b6a0c7bc96b, type: 3}
+  m_Name: Ilan
+  m_EditorClassIdentifier: 
+  patientName: Ilan Musk
+  symptoms: "Three month history of right elbow pain. Pain began after  playing an
+    intensive day of squash. Pain has been worsening  over the last 3 weeks. Feels
+    \u201Cbruised\u201D"
+  cause: Using a doorknob/door handle, using cell phone, opening jars,  picking up
+    bags, applying pressure to the area
+  history: "Bob\u2019s pain began after he played an intensive game of  squash. The
+    pain has been worsening over the past three  weeks. He has been trying to take
+    it easy to help relieve  the pain, but the pain has not changed. He saw his family 
+    doctor who told him to rest the arm and take it easy."
+  goal: To be able to resume playing squash
+  socialHis: "Bob is a master\u2019s student. He lives with a roommate. He  enjoys
+    physical activities including hiking, playing squash, and  baseball."

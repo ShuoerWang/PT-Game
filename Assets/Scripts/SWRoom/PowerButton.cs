@@ -7,6 +7,7 @@ public class PowerButton : MonoBehaviour
     // Start is called before the first frame update
     public SWRoomManager sWRoomManager;
     public Treatment treatment;
+    public UISound uISound;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PowerButton : MonoBehaviour
             RaycastHit2D raycastHit = Physics2D.Raycast(worldPosition, Vector2.zero);
             if (raycastHit.transform == gameObject.transform)
             {
+                uISound.powerButtonClick();
                 if (PlayerPrefs.GetInt("powerPlugged") == 1)
                 {
                     if (PlayerPrefs.GetInt("machineOn") == 0)

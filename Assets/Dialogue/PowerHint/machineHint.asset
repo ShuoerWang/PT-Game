@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: machineHint
   m_EditorClassIdentifier: 
   narration: Looks like the machine did not reponse...Better check the power!
-  speakerName: hint
+  speakerName: 'hint:'
   nextNode: {fileID: 0}

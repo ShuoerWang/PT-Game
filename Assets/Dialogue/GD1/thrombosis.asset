@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: thrombosis
   m_EditorClassIdentifier: 
   narration: Do you have thrombosis?
-  speakerName: Player
+  speakerName: 'Player:'
   nextNode: {fileID: 11400000, guid: 3b9411f94e71b4cc5ace2daef2ba6eca, type: 2}

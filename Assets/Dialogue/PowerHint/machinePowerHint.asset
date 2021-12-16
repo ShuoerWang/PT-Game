@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5382f91a4be48129e8b35004f940ab, type: 3}
   m_Name: machinePowerHint
   m_EditorClassIdentifier: 
-  narration: Oh! Looks like the machine does not have power. Where is the plug?
-  speakerName: hint
+  narration: Looks like the machine does not connect to the power. Where is the plug?
+  speakerName: 'hint:'
   nextNode: {fileID: 0}

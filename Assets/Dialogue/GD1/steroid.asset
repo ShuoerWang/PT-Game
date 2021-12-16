@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: steroid
   m_EditorClassIdentifier: 
   narration: Are you currently on steroid treatment?
-  speakerName: Player
-  nextNode: {fileID: 0}
+  speakerName: 'Player:'
+  nextNode: {fileID: 11400000, guid: 3b9411f94e71b4cc5ace2daef2ba6eca, type: 2}

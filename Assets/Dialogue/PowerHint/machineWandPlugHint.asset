@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: machineWandPlugHint
   m_EditorClassIdentifier: 
   narration: What should I connect to this?
-  speakerName: hint
+  speakerName: 'hint:'
   nextNode: {fileID: 0}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Plugged in
   m_EditorClassIdentifier: 
   narration: This should power-up the machine...
-  speakerName: Player
+  speakerName: 'Player:'
   nextNode: {fileID: 0}

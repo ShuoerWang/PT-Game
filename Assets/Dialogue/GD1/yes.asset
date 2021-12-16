@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: yes
   m_EditorClassIdentifier: 
   narration: Yes.
-  speakerName: Lucy
+  speakerName: 'Lucy:'
   nextNode: {fileID: 11400000, guid: 877fb3a6c803a4e50bc89ec55122ace9, type: 2}

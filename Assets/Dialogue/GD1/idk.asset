@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5382f91a4be48129e8b35004f940ab, type: 3}
+  m_Name: idk
+  m_EditorClassIdentifier: 
+  narration: Sorry doc,  I don't know what that is.
+  speakerName: 'Lucy:'
+  nextNode: {fileID: 11400000, guid: 877fb3a6c803a4e50bc89ec55122ace9, type: 2}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: endTreatment
   m_EditorClassIdentifier: 
   narration: Consider your situation, I suggest that we stop the treatment
-  speakerName: Player
+  speakerName: 'Player:'
   nextNode: {fileID: 0}

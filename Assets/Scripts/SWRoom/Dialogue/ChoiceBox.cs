@@ -18,6 +18,7 @@ public class ChoiceBox : MonoBehaviour
             textMeshProUGUI.text = value.preview;
             nextNode = value.choiceNode;
         }
+
     }
 
     private void Start()
@@ -31,10 +32,12 @@ public class ChoiceBox : MonoBehaviour
         {
             dialogueChannel.RaiseDialogueNodeEnd();
             dialogueChannel.RaiseDialogueNodeStart(nextNode);
+            dialogueChannel.RaiseDialogueChoiceMade(textMeshProUGUI.text);
         } else
         {
             dialogueChannel.RaiseDialogueNodeEnd();
             dialogueChannel.RaiseDialogueEnd(currNode);
+            dialogueChannel.RaiseDialogueChoiceMade(textMeshProUGUI.text);
         }
         
     }

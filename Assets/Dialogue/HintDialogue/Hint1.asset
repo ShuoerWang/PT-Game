@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5382f91a4be48129e8b35004f940ab, type: 3}
   m_Name: Hint1
   m_EditorClassIdentifier: 
-  narration: 'Find the tools and finish the treatment. Like in a real Physical therapy
-    room... '
-  speakerName: hint
+  narration: Find the tools and complete the treatment. Don't forget about checking
+    counter indication.
+  speakerName: 'hint:'
   nextNode: {fileID: 0}

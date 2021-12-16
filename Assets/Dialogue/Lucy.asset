@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daae0c8f62fb484d9016b6a0c7bc96b, type: 3}
+  m_Name: Lucy
+  m_EditorClassIdentifier: 
+  patientName: Lucy Keen
+  symptoms: 'One month history of right calf pain. Pain began after falling down
+    on ice. Pain has been worsening over the last few days. '
+  cause: 'Walking, dancing, driving  '
+  history: Lucy's pain began after she falling on ice. She has been trying to take
+    it easy to help relieve the pain, but the pain has not changed. She saw her family
+    doctor who told him to rest for some time.
+  goal: Be able to walk without pain
+  socialHis: Lucy Keen is a 24-year-old software developer.
